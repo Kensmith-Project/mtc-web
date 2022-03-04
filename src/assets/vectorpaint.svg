@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="353" height="427" fill="none" style=""><rect id="backgroundrect" width="100%" height="100%" x="0" y="0" fill="none" stroke="none"/>
+
+
+
+
+
+
+
+
+
+
+
+<defs>
+<filter id="filter0_d_0:1" x="15" y="7" width="329" height="420" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="10"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.6625 0 0 0 0 0.6625 0 0 0 0 0.6625 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0:1"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0:1" result="shape"/>
+</filter>
+</defs>
+<g class="currentLayer" style=""><title>Layer 1</title><g filter="url(#filter0_d_0:1)" id="svg_1" class="selected">
+<rect x="35" y="23" width="278.14728277921677" height="297.0542502403259" rx="12" fill="#020737" id="svg_2"/>
+</g><path d="M169.222 184.237L290.5 322.5L324 322.5L324 298.5L193.419 168.166L169.222 184.237Z" fill="#C4C4C4" fill-opacity="0.1" id="svg_3"/><path d="M194 322L160 322L169.5 217L186 217.5L194 322Z" fill="#C4C4C4" fill-opacity="0.1" id="svg_4"/><path d="M109.208 23H39L150.396 162L176 153.312L109.208 23Z" fill="#C4C4C4" fill-opacity="0.1" id="svg_5"/><path d="M35 153L35 198L173.487 185.913L178.935 163.754L35 153Z" fill="#C4C4C4" fill-opacity="0.1" id="svg_6"/><path d="M324 148.5L324 204L164.974 186.317L158.279 160.122L324 148.5Z" fill="#C4C4C4" fill-opacity="0.1" id="svg_7"/><path d="M31.1286 319.245L72.309 342.841L176.896 179.583L154.678 168.882L31.1286 319.245Z" fill="#C4C4C4" fill-opacity="0.1" id="svg_8"/><path d="M199.579 163.698L324 53L324 32.4999L323 29.4999L320.5 26.4999L317.5 24.4999L314.5 23L267.999 22.9999L182.186 150.45L199.579 163.698Z" fill="#C4C4C4" fill-opacity="0.1" id="svg_9"/><path d="M209.5 23.0002L160 23.0002L173.5 170L185 170L209.5 23.0002Z" fill="#C4C4C4" fill-opacity="0.1" id="svg_10"/><circle cx="179.5" cy="174.5" r="50.5" fill="#30376F" id="svg_11"/><path d="M158 190.5L169.5 159L178.5 190.5L186.5 159L199.5 190.5" stroke="#F2994A" stroke-width="5" stroke-linejoin="round" id="svg_12"/></g></svg>
