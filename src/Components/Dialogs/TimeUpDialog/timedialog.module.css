@@ -1,0 +1,16 @@
+.btnArea{
+    display: flex;
+    justify-content: center;
+}
+.content h1{
+    font-size: 60px;
+    padding: 100px;
+    margin: 0;
+}
+
+.close{
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* margin: 10px 10px 0 0; */
+}

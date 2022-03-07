@@ -53,3 +53,11 @@ export interface QuestionsResponse{
     "acf": QuestionField;
     "_links": LinkResponse;
 }
+
+export interface ScoreResponse{
+    questionsAnswered?: number;
+    answeredCorrect?: number;
+    answeredWrong?: number;
+    score?: number;
+    seconds?: number;
+}

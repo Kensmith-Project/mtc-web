@@ -1,0 +1,29 @@
+.container{
+    background: radial-gradient(100% 100% at 55.9% 0%, #040649 0%, #212489 64.52%, #040649 100%);
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title h1{
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 100px;
+    line-height: 118px;
+    color: #FFFFFF;
+}
+
+.title{
+    display: flex;
+}
+
+.backButton{
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+}

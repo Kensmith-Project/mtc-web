@@ -1,0 +1,269 @@
+.container{
+    background: radial-gradient(62.65% 62.65% at 56.49% 26.03%, #0037FA 0%, #022FBE 64.52%, #042781 100%);
+    min-height: 100vh;
+    /*background-image: url('../../assets/pexels-black-ice-1314536\ 1.png');
+    background-repeat: no-repeat;
+    background-size: contain;*/
+    position: relative;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.main{
+    display: flex;
+    width: 100%;
+    /* background-color: red; */
+    flex-direction: row;
+    /* justify-content: space-evenly; */
+    /* padding: 6% 0px; */
+}
+
+.infoArea{
+    flex: 0.8;
+    padding: 0 4%;
+}
+
+.cardMeta p{
+    padding: 0;
+    margin: 0;
+    color: white;
+    text-align: center;
+}
+
+.cardMeta h3{
+    font-family: 'Rubik';
+    font-size: 25px;
+    padding: 0;
+    margin: 0;
+    color: white;
+    text-align: center;
+}
+
+.scoreCard{
+    margin-top: 10%;
+    background-color: white;
+    border-radius: 8px;
+    position: relative;
+    width: 100%;
+    padding: 25px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.scoreCard h4{
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    /* padding: 0; */
+    margin: 0;
+}
+
+.score{
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 96px;
+    line-height: 114px;
+    text-align: center;
+
+}
+
+.backButton{
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.gameDisplay{
+    /* background-color: blue; */
+    padding: 0 4% 0 0%;
+    flex: 3;
+    margin-top: 1.5%;
+}
+
+.blackboard{
+    background-image: url('../../assets/blackboard.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* border: 3px solid #FFFFFF; */
+    border-radius: 8px;
+    min-height: 300px;
+    border-right: 3px solid #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    height: 70%;
+    justify-content: center;
+}
+
+.mathDisplay{
+    font-size: 96px;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* height: 100%; */
+    margin-bottom: 5%;
+}
+
+.answer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.answer span{
+    font-size: 56px;
+    line-height: 72px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.answer input{
+    background-color: #C4C4C4;
+    border: none;
+    width: 5ch;
+    padding: 1.5% 0;
+    margin-left: 10px;
+    font-size: 50px;
+    text-align: center;
+}
+
+.roundLabel{
+    background: #4D72F3;
+    border-radius: 0px 0px 22px 22px;
+    padding: 1px 0;
+    margin-top: -3px;
+}
+
+.roundLabel h4{
+    font-size: 18px;
+    line-height: 15px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.timerLeaderboard{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background-color: yellow;  */
+    padding: 0 4% 0 0;
+    margin-top: 1.5%;
+}
+
+.timer{
+    background-color: white;
+    border-radius: 8px;
+    position: relative;
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.timer p{
+    font-family: 'Rubik';
+    font-size: 50px;
+    text-align: center;
+}
+
+.timerHeader{
+    padding: 10px 0;
+}
+
+.timerHeader h4{
+    font-family: 'Rubik';
+    font-size: 24px;
+    font-weight: 400;
+    /* padding: 0; */
+    text-align: center;
+    margin: 0;
+    color: #7C848C;
+}
+
+.indicator{
+    height: 3px;
+	width: 100%;
+	background: #CFDAE6;
+    position: relative;
+}
+
+.indicatorStrip{
+    position: absolute;
+    top: 0;
+    height: 3px;
+    background-color: #CF471C;
+}
+
+.indicator::before{
+    content: '';
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #CF471C;
+    /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+    animation: getWidth 40s linear;
+}
+
+.category{
+    margin-top: 10%;
+    width: 100%;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.categoryText{
+    padding: 20px 0 40px 0;
+}
+
+.categoryText p{
+    font-family: 'Rubik';
+    font-size: 30px;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    word-wrap: break-word;
+}
+
+.leaderboard{
+    margin-top: 10%;
+    background-image: url('../../assets/trophyBackdrop.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-color: white;
+    border-radius: 8px;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 10px;
+}
+
+.trophy{
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.playerList li{
+    line-height: 50px;
+}
+
+@keyframes getWidth {
+	100% { width: 0; }
+}
+
+
+/* Responsive styling */
+
+@media only screen and (max-width: 1120px) {
+   .blackboard{
+       border-right: 3px solid #FFFFFF;
+   }
+}
+

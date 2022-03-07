@@ -10,6 +10,8 @@ import React from 'react';
 import MyStatusBar from './Components/MyStatusBar';
 import ToastContext, { ToastContextProps } from './Contexts/ToastContext';
 import HomePage from './Pages/HomePage';
+import ElementaryRoute from './routes/ElementaryRoute';
+import GamePage from './Pages/GamePage';
 
 function App(){
 
@@ -49,6 +51,8 @@ function App(){
       />
       <Switch>
         <Route path="/" exact component={HomePage}/>
+        <Route path="/elementary" component={ElementaryRoute}/>
+        <Route path="/game" component={GamePage}/>
         {/* <Route path="/setup" exact component={AdminSetUpScreen}/>
         <Route path="/login" component={LoginScreen}/>
         <Route path="/home" component={HomeScreen}/>

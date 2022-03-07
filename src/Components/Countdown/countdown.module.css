@@ -1,0 +1,9 @@
+.count{
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 150px;
+    line-height: 178px;
+    /* identical to box height */
+    color: #F9BA0F;
+}

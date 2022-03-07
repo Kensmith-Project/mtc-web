@@ -8,8 +8,13 @@ import { useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Path } from '../../paths';
+import { useCategories, useQuestions } from '../../Services/question';
 
 const HomePage: React.FC<any> = ()=>{
+
+    // Data Fetch
+    const questionFetch = useQuestions();
+    const categoriesFetch = useCategories();
 
     // Hooks
     const history = useHistory();
