@@ -28,8 +28,8 @@ const HomePage: React.FC<any> = ()=>{
     }
     const gotoSecondary = ()=>{
         history.push({
-            pathname: "/secondary",
-            state:{ level: 'secondary' }
+            pathname: "/middle",
+            state:{ level: 'middle' }
         })
     }
     const gotoHighSchool = ()=>{
@@ -38,6 +38,8 @@ const HomePage: React.FC<any> = ()=>{
             state:{ level: 'high' }
         })
     }
+
+    // Clear questions and categories in localstorage
 
     return(
         <Layout>
