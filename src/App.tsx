@@ -11,7 +11,10 @@ import MyStatusBar from './Components/MyStatusBar';
 import ToastContext, { ToastContextProps } from './Contexts/ToastContext';
 import HomePage from './Pages/HomePage';
 import ElementaryRoute from './routes/ElementaryRoute';
-import GamePage from './Pages/GamePage';
+import LoadingContext from './Contexts/LoadingContext';
+import LoadingScreen from './Components/LoadingScreen';
+import CountdownPage from './Pages/CountdownPage';
+import GameRoute from './routes/GameRoute';
 
 function App(){
 
@@ -19,6 +22,7 @@ function App(){
   const [successMessage, setSuccessMessage] = React.useState<string>('');
   const [errorOpen, setErrorOpen] = React.useState<boolean>(false);
   const [errorMessage, setErrorMessage] = React.useState<string>('');
+  const [loading, setLoading] = React.useState<boolean>(false);
 
   const handleSuccessclose = ()=>{
       setSuccessOpen(false);
@@ -41,31 +45,37 @@ function App(){
   }
 
   return (
-    <ToastContext.Provider value={toastValue}>
-    <Router>
-      <MyStatusBar
-        successOpen={successOpen} successMessage={successMessage} 
-        onSuccessClose={handleSuccessclose}
-        errOpen={errorOpen} errMessage={errorMessage} 
-        onErrClose={handleErrorclose}
-      />
-      <Switch>
-        <Route path="/" exact component={HomePage}/>
-        <Route path="/elementary" component={ElementaryRoute}/>
-        <Route path="/game" component={GamePage}/>
-        {/* <Route path="/setup" exact component={AdminSetUpScreen}/>
-        <Route path="/login" component={LoginScreen}/>
-        <Route path="/home" component={HomeScreen}/>
-        <Route path="/settings" component={Settings}/>
-        <Route path="/elementary" component={ElementaryRoute}/>
-        <Route path="/secondary" component={MiddleRoute}/>
-        <Route path="/high" component={HighRoute}/>
-        <Route path="/game" component={GameRoute}/>
-        <Route path="/leaderboard" component={LeaderboardScreen}/>
-        <Route path="/roundleaderboard" component={RoundLeaderboardScreen}/> */}
-      </Switch>
-    </Router>
-    </ToastContext.Provider>
+    <>
+    { loading && <LoadingScreen/>}
+    <LoadingContext.Provider value={{loading, setLoading }}>
+      <ToastContext.Provider value={toastValue}>
+      <Router>
+        <MyStatusBar
+          successOpen={successOpen} successMessage={successMessage} 
+          onSuccessClose={handleSuccessclose}
+          errOpen={errorOpen} errMessage={errorMessage} 
+          onErrClose={handleErrorclose}
+        />
+        <Switch>
+          <Route path="/" exact component={HomePage}/>
+          <Route path="/elementary" component={ElementaryRoute}/>
+          <Route path="/ready" component={CountdownPage}/>
+          <Route path="/game" component={GameRoute}/>
+          {/* <Route path="/setup" exact component={AdminSetUpScreen}/>
+          <Route path="/login" component={LoginScreen}/>
+          <Route path="/home" component={HomeScreen}/>
+          <Route path="/settings" component={Settings}/>
+          <Route path="/elementary" component={ElementaryRoute}/>
+          <Route path="/secondary" component={MiddleRoute}/>
+          <Route path="/high" component={HighRoute}/>
+          <Route path="/game" component={GameRoute}/>
+          <Route path="/leaderboard" component={LeaderboardScreen}/>
+          <Route path="/roundleaderboard" component={RoundLeaderboardScreen}/> */}
+        </Switch>
+      </Router>
+      </ToastContext.Provider>
+    </LoadingContext.Provider>
+    </>
   );
 }
 

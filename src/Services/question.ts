@@ -9,7 +9,7 @@ export const useQuestions = () =>{
     const fetcher = (url: string) => 
     Axios.get(baseUrl + url).then((response: AxiosResponse<QuestionsResponse[]>)=> response.data);
     const { data, error, mutate } = useSwr(`/mtc_question`, fetcher);
-    console.log(data);
+    //console.log(data);
     return {
         data: data,
         isLoading: !error && !data,
@@ -22,7 +22,7 @@ export const useCategories = () =>{
     const fetcher = (url: string) => 
     Axios.get(baseUrl + url).then((response: AxiosResponse<CategoryResponse[]>)=> response.data);
     const { data, error, mutate } = useSwr(`/categories`, fetcher);
-    console.log(data);
+    //console.log(data);
     return {
         data: data,
         isLoading: !error && !data,

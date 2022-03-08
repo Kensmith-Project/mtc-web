@@ -17,31 +17,6 @@ const CountdownPage: React.FC<any> = ()=>{
 
     // Hooks
     const history = useHistory();
-    const location = useLocation();
-
-    // Data Fetching
-    const { data, isError } = useQuestions();
-    const categoriesFetch = useCategories();
-    
-
-    // Effect
-    React.useEffect(()=>{
-        if (data && categoriesFetch.data) {
-            let level = location.pathname.replace('/', '');
-            let category = categoriesFetch.data?.find((c)=> c.slug === level);
-            let questions: QuestionsResponse[] | undefined = [];
-            if (category) {
-                let cat = category
-                questions = data?.filter((q)=> q.categories.includes(cat.id));
-                let questionFields = questions.map((q)=> q.acf);
-                console.log(questionFields) 
-                localStorage.setItem('mtc_questions', JSON.stringify(questionFields));
-            }
-        }
-        if (isError || categoriesFetch.isError) {
-            openError('An error occurred while setting up the quiz')
-        }
-    },[data, categoriesFetch.data])
 
 
     // State

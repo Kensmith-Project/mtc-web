@@ -58,7 +58,7 @@ const HomePage: React.FC<any> = ()=>{
             <div className={styles.title}>
                 <h4>Please Select a Level</h4>
             </div>
-            <div className={`mtc-center ${styles.main}`}>
+            <div className={`${styles.main}`}>
 
                {/** Elementary Card */}
                <div className={styles.card} onClick={gotoElementary}>

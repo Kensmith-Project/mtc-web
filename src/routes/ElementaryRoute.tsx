@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, RouteComponentProps, Switch } from 'react-router';
-import CountdownPage from '../Pages/CountdownPage';
+import CategoryPage from '../Pages/CategoryPage';
 
 const ElementaryRoute: React.FC<RouteComponentProps> = ({ match }) =>{
 
@@ -9,7 +9,7 @@ const ElementaryRoute: React.FC<RouteComponentProps> = ({ match }) =>{
         <div>
             <Switch>
                 {/* here's a nested Route, match.url helps us make a relative path */}
-                <Route path={match.url} exact component={CountdownPage} />
+                <Route path={match.url} exact component={CategoryPage} />
                 {/* <Route path={match.url + "/rules"} component={RuleScreen} />
                 <Route path={match.url + "/game"} component={CountDownScreen} /> */}
             </Switch>

@@ -32,6 +32,7 @@ export interface CategoryResponse{
 export interface QuestionField{
     "question": string;
     "answer": string;
+    "level": string;
 }
 
 export interface QuestionsResponse{

@@ -33,19 +33,27 @@ const GamePage: React.FC<any> = ()=>{
     const countControls = useAnimation();
     const controls = useAnimation();
 
-    // Local Storage
-    let unParsedQuestions = localStorage.getItem('mtc_questions');
-    const questions: QuestionField[] = unParsedQuestions ? JSON.parse(unParsedQuestions) : [];
-
     // State
     const [background, setBackground] = React.useState<string>("#00EB96");
     const [metricValue, setMetric] = React.useState<number>(0);
     const [open, setOpen] = React.useState<boolean>(false);
     const [qIndex, setQIndex] = React.useState<number>(0);
+    const [questions, setQuestions] = React.useState<QuestionField[]>([]);
     const [correct, setCorrect] = React.useState<boolean>(false);
     const [skipCount, setSkipCount] = React.useState<number>(0);
     const [stopMeter, setStopMeter] = React.useState<boolean>(false);
-    const [answer, setAnswer] = React.useState<string>('')
+    const [answer, setAnswer] = React.useState<string>('');
+
+    // Re-route effect
+    React.useEffect(()=>{
+        let unParsedQuestions = localStorage.getItem('mtc_questions');
+        if (unParsedQuestions === null) {
+            history.replace('/');
+        }
+        else{
+            setQuestions(JSON.parse(unParsedQuestions));
+        }
+    },[]);
 
 
     // Memoizee value
@@ -81,6 +89,9 @@ const GamePage: React.FC<any> = ()=>{
     // Handlers
     const handleClose = ()=>{
         history.goBack()
+    }
+    const handleNext = ()=>{
+        history.push('/game/review');
     }
     const handleAnswerChange = (e: React.ChangeEvent<HTMLInputElement>)=>{
         setAnswer(e.target.value);
@@ -251,7 +262,7 @@ const GamePage: React.FC<any> = ()=>{
             {/** Blackboard Game */}
             <div className={styles.blackboard}>
                 <div className={styles.mathDisplay}>
-                    <p>{(questions && questions[qIndex].question)}</p>
+                    <p>{((questions && questions.length > 0) && questions[qIndex].question)}</p>
                 </div>
                 <form onSubmit={handleAnswerSubmit} className={styles.answer}>
                     <span>Ans =</span>
@@ -324,7 +335,9 @@ const GamePage: React.FC<any> = ()=>{
         <>
        <div className={styles.container}>
             {/** Time Up Dialog */}
-            {/* <TimeUpDialog open={open} onClose={handleDialogClose} disableClose hideNext/> */}
+            <TimeUpDialog open={open} onClose={handleDialogClose} disableClose
+                onNext={handleNext}
+            />
 
             <div className={`${styles.main}`}>
 

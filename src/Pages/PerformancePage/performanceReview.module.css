@@ -1,0 +1,146 @@
+.title{
+    margin-bottom: 30%;
+}
+
+.title h4{
+    padding: 0;
+    margin: 0;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 32px;
+    line-height: 43px;
+    color: #FFFFFF;
+}
+
+.logoArea{
+    flex: 0.3;
+    padding: 2.5% 4%;
+}
+
+.logo img{
+    filter: drop-shadow(0px 4px 30px #29ACE3);
+    width: 150px;
+    height: 150px;;
+    border-radius: 50%;
+}
+
+.main{
+    display: flex;
+    width: 100%;
+    /* background-color: red; */
+    flex-direction: row;
+    /* justify-content: space-evenly; */
+    /* padding: 6% 0px; */
+}
+
+.statDisplay{
+    flex: 0.3;
+    /* padding: 0% 4% 4% 0; */
+}
+
+.displayPic{
+    flex: 1;
+    padding: 4%;
+    /* background-color: seagreen; */
+}
+
+
+.ellipse{
+    display: block;
+    text-align: center;
+    margin-top: -90px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile{
+    width: 85%;
+    height: 85%;
+    position: relative;
+    /* background-color: salmon; */
+    z-index: 2;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 45% 50%;
+    border: 8px solid #FFFFFF;
+    border-radius: 8px;
+}
+
+.name{
+    font-family: "Rubik";
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 28px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+}
+
+.name hr{
+    padding: 0;
+    margin: 0;
+}
+
+.name > p:not(p:nth-child(2)){
+    font-family: "Rubik";
+    font-size: 20px;
+    line-height: 28px;
+    color: #F9BA0F;
+    text-transform: uppercase;
+}
+
+.name > p:nth-child(2){
+    font-family: "Rubik";
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 43px;
+    color: #F9BA0F;
+    text-transform: uppercase;
+}
+
+.stat{
+    font-family: "Rubik";
+    font-size: 20px;
+    color: #FFFFFF;
+    margin-top: 10%;
+}
+
+.stat hr{
+    padding: 0;
+    margin: 0;
+}
+
+.stat p{
+    font-size: 32px;
+    /* line-height: 28px; */
+    color: #F9BA0F;
+    font-weight: 500;
+}
+
+.stat > p:nth-child(2){
+    color: #FFFFFF;
+    font-size: 20px;
+}
+
+.btnDisplay{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+/* Responsive styling */
+
+@media only screen and (max-width: 1120px) {
+    .profile{
+        width: 100%;
+    }
+}
