@@ -15,6 +15,9 @@ import LoadingContext from './Contexts/LoadingContext';
 import LoadingScreen from './Components/LoadingScreen';
 import CountdownPage from './Pages/CountdownPage';
 import GameRoute from './routes/GameRoute';
+import MiddleRoute from './routes/MiddleRoute';
+import HighRoute from './routes/HighRoute';
+import CategoryDescriptionPage from './Pages/CategoryDescriptionPage';
 
 function App(){
 
@@ -59,18 +62,11 @@ function App(){
         <Switch>
           <Route path="/" exact component={HomePage}/>
           <Route path="/elementary" component={ElementaryRoute}/>
+          <Route path="/middle" component={MiddleRoute}/>
+          <Route path="/high" component={HighRoute}/>
+          <Route path="/category" component={CategoryDescriptionPage}/>
           <Route path="/ready" component={CountdownPage}/>
           <Route path="/game" component={GameRoute}/>
-          {/* <Route path="/setup" exact component={AdminSetUpScreen}/>
-          <Route path="/login" component={LoginScreen}/>
-          <Route path="/home" component={HomeScreen}/>
-          <Route path="/settings" component={Settings}/>
-          <Route path="/elementary" component={ElementaryRoute}/>
-          <Route path="/secondary" component={MiddleRoute}/>
-          <Route path="/high" component={HighRoute}/>
-          <Route path="/game" component={GameRoute}/>
-          <Route path="/leaderboard" component={LeaderboardScreen}/>
-          <Route path="/roundleaderboard" component={RoundLeaderboardScreen}/> */}
         </Switch>
       </Router>
       </ToastContext.Provider>

@@ -1,0 +1,56 @@
+.container{
+    background: radial-gradient(100% 100% at 55.9% 0%, #040649 0%, #212489 64.52%, #040649 100%);
+    min-height: 100vh;
+    /*background-image: url('../../assets/pexels-black-ice-1314536\ 1.png');
+    background-repeat: no-repeat;
+    background-size: contain;*/
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.card{
+    justify-content: center;
+    padding: 15px 70px 70px;
+    max-width: 800px;
+    background: #FFFFFF;
+    border-radius: 33px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.description p{
+    font-size: 24px;
+    font-family: 'Rubik';
+    line-height: 32px;
+    text-align: center;
+}
+
+.childrenVector{
+    padding: 0;
+    margin: 0;
+}
+.childrenVector img{
+    position: absolute;
+    width: 15em;
+    height: 15em;
+    bottom: 0;
+    right: 0px;
+    padding: 0;
+}
+
+.backButton{
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+}

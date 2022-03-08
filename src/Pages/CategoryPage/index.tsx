@@ -17,6 +17,9 @@ import { useCategories, useQuestions } from '../../Services/question';
 import { CategoryResponse, QuestionField, QuestionsResponse } from '../../types/response';
 import ToastContext from '../../Contexts/ToastContext';
 import LoadingContext from '../../Contexts/LoadingContext';
+import Popover from '@mui/material/Popover';
+import Typography from '@mui/material/Typography';
+import { shuffleArray } from '../../utils/shuffleUtils';
 
 const ElementaryHome: React.FC<any> = ()=>{
     
@@ -46,8 +49,17 @@ const ElementaryHome: React.FC<any> = ()=>{
     const [categoryOptions, setCategoryOptions] = React.useState<CategoryResponse[]>([]);
     const [filteredQuestions, setFilteredQuestions] = React.useState<QuestionsResponse[]>([]);
     const [questionFields, setQuestionFields] = React.useState<QuestionField[]>([]);
+    const [open, setOpen] = React.useState<boolean>(false);
+    const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+
+    // Variables
+    const id = open ? 'warning-popover' : undefined;
 
     // Handlers
+    const handlePopoverClose = ()=>{
+        setAnchorEl(null);
+        setOpen(false);
+    }
     const handleCategoryChange = (event: SelectChangeEvent)=>{
         let value = event.target.value;
         setCategory(value);
@@ -69,9 +81,17 @@ const ElementaryHome: React.FC<any> = ()=>{
     const handleClose = ()=>{
         history.goBack();
     }
-    const gotoCategory = ()=>{
+    const gotoCategory = (event: React.MouseEvent<HTMLButtonElement>)=>{
+        setAnchorEl(event.currentTarget);
+        if (questionFields.length === 0) {
+            setOpen(true);
+            return;
+        }
+        let cat = categoriesFetch.data?.find((c)=> c.name === category);
+        shuffleArray(questionFields);
         localStorage.setItem('mtc_questions', JSON.stringify(questionFields));
-        history.push('/ready');
+        localStorage.setItem('mtc_category', JSON.stringify(cat));
+        history.push('/category');
     }
 
     // Effects
@@ -81,6 +101,9 @@ const ElementaryHome: React.FC<any> = ()=>{
     React.useEffect(()=>{
         if (data && categoriesFetch.data) {
             let level = location.pathname.replace('/', '');
+
+            console.log("Questions");
+            console.log(data);
 
             // Filter questions by level
             let filteredQdata = data.filter((q)=> q.acf.level === level);
@@ -180,6 +203,7 @@ const ElementaryHome: React.FC<any> = ()=>{
                     {/** Continue Button */}
                     {
                         category !== '' &&
+                        <>
                         <Button
                             onClick={gotoCategory}
                             variant='contained'
@@ -194,6 +218,19 @@ const ElementaryHome: React.FC<any> = ()=>{
                         >
                             Continue
                         </Button>
+                        <Popover
+                            id={id}
+                            open={open}
+                            anchorEl={anchorEl}
+                            onClose={handlePopoverClose}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                        >
+                            <Typography sx={{ p: 2 }}>This category doesn't have enough questions</Typography>
+                        </Popover>
+                        </>
                     }
                 </div>
             </div>
