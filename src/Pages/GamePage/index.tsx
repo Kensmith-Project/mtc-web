@@ -25,6 +25,7 @@ const GamePage: React.FC<any> = ()=>{
     const questionsAnswered = React.useRef(0);
     const answeredCorrect = React.useRef(0);
     const keyPressed = React.useRef<'right'|'wrong'>()
+    const countRef = React.useRef(0);
 
 
     // Hooks
@@ -70,7 +71,7 @@ const GamePage: React.FC<any> = ()=>{
     })
     let countdownIndicator: TargetAndTransition = {
         width: '0%',
-        transition: { duration: maxTime, ease: 'linear' }
+        transition: { duration: startCount, ease: 'linear' }
     }
     // Animations and Refs
     let animateCorrect = React.useRef<TargetAndTransition>({
@@ -84,7 +85,12 @@ const GamePage: React.FC<any> = ()=>{
         transition:{
             duration: 0.3
         }
-    })
+    });
+
+    // Offset calculator
+    const calculateOffset = ()=>{
+        countRef.current += 1;
+    }
 
     // Handlers
     const handleClose = ()=>{
@@ -143,7 +149,9 @@ const GamePage: React.FC<any> = ()=>{
             answeredCorrect.current += 1;
             scoreRef.current += (10);
             flashRight();
-            setMetric((prevMetric)=>(prevMetric + 2));
+            let qPerSecond = questionsAnswered.current/countRef.current;
+            setMetric(qPerSecond);
+            //setMetric((prevMetric)=>(prevMetric + 2));
             setAnswer('');
             nextQuestion();
         }
@@ -152,14 +160,16 @@ const GamePage: React.FC<any> = ()=>{
             scoreRef.current -= (0);
             setBackground("#CE3427");
             flashWrong();
-            setMetric((prevMetric)=>{
-                if (prevMetric === 0) {
-                    return prevMetric
-                }
-                else{
-                    return prevMetric -1
-                }
-            });
+            // setMetric((prevMetric)=>{
+            //     if (prevMetric === 0) {
+            //         return prevMetric
+            //     }
+            //     else{
+            //         return prevMetric -1
+            //     }
+            // });
+            let qPerSecond = questionsAnswered.current/countRef.current;
+            setMetric(qPerSecond);
             setAnswer('');
             nextQuestion();
         }
@@ -168,16 +178,27 @@ const GamePage: React.FC<any> = ()=>{
     // Effect
     React.useEffect(()=>{
         countControls.start(countdownIndicator);
+    },[]);
+    React.useEffect(()=>{
+        let countInterval = setInterval(()=>{
+            calculateOffset();
+        }, 1000);
+
+        return ()=> clearInterval(countInterval);
+    },[])
+    React.useEffect(()=>{
         let metricInterval = setInterval(()=>{
-            setMetric((prevMetric)=>{
-                if (prevMetric === 0) {
-                    return prevMetric
-                }
-                else{
-                    return prevMetric -1
-                }
-            });
-        }, 1500);
+            // setMetric((prevMetric)=>{
+            //     if (prevMetric === 0) {
+            //         return prevMetric
+            //     }
+            //     else{
+            //         return prevMetric -1
+            //     }
+            // });
+            let qPerSecond = questionsAnswered.current/countRef.current;
+            setMetric(qPerSecond);
+        }, 1000);
 
         if (stopMeter) {
             clearInterval(metricInterval);
@@ -239,17 +260,20 @@ const GamePage: React.FC<any> = ()=>{
             <div className={styles.scoreCard}>
                 <h4>LIVE PERFORMANCE METRIC</h4>
                 <ReactSpeedometer
-                    maxValue={60}
+                    maxValue={2}
                     value={metricValue}
                     needleColor="red"
-                    segments={3}
+                    //segments={3}
+                    customSegmentStops={[0, 0.5, 1, 1.5, 2]}
                     fluidWidth
                     height={200}
                     ringWidth={25}
+                    currentValueText={''}
                     segmentColors={[
-                        "#C40050",
-                        "#FFE600",
-                        "#9BFF00",
+                        "#C40700",
+                        "#f6ff00",
+                        "#adf0ad",
+                        "#4bc400",
                     ]}
                 />
             </div>
