@@ -149,7 +149,7 @@ const GamePage: React.FC<any> = ()=>{
             answeredCorrect.current += 1;
             scoreRef.current += (10);
             flashRight();
-            let qPerSecond = questionsAnswered.current/countRef.current;
+            let qPerSecond = answeredCorrect.current/countRef.current;
             setMetric(qPerSecond);
             //setMetric((prevMetric)=>(prevMetric + 2));
             setAnswer('');
@@ -168,7 +168,7 @@ const GamePage: React.FC<any> = ()=>{
             //         return prevMetric -1
             //     }
             // });
-            let qPerSecond = questionsAnswered.current/countRef.current;
+            let qPerSecond = answeredCorrect.current/countRef.current;
             setMetric(qPerSecond);
             setAnswer('');
             nextQuestion();
@@ -196,7 +196,7 @@ const GamePage: React.FC<any> = ()=>{
             //         return prevMetric -1
             //     }
             // });
-            let qPerSecond = questionsAnswered.current/countRef.current;
+            let qPerSecond = answeredCorrect.current/countRef.current;
             setMetric(qPerSecond);
         }, 1000);
 
@@ -268,7 +268,7 @@ const GamePage: React.FC<any> = ()=>{
                     fluidWidth
                     height={200}
                     ringWidth={25}
-                    currentValueText={''}
+                    valueTextFontSize={'0px'}
                     segmentColors={[
                         "#C40700",
                         "#f6ff00",

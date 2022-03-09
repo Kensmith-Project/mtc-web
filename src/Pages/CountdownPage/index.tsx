@@ -60,7 +60,7 @@ const CountdownPage: React.FC<any> = ()=>{
          
              {/** Button */}
              <Button
-                disabled={localStorage.getItem('mtc_questions') === null}
+                disabled={localStorage.getItem('mtc_questions') === null || begin}
                 onClick={startGame}
                 variant='contained'
                 sx={{
