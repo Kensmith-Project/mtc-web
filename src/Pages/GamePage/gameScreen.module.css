@@ -52,6 +52,10 @@
     align-items: center;
 }
 
+.liveMetric{
+    padding-bottom: 0px;
+}
+
 .scoreCard h4{
     font-family: 'Rubik';
     font-style: normal;
@@ -242,6 +246,12 @@
     width: 100%;
     height: 100%;
     padding-bottom: 10px;
+}
+
+.speedometerLabel{
+    font-size: 14px;
+    top: -45px;
+    position: relative;
 }
 
 .trophy{

@@ -134,7 +134,7 @@ const ElementaryHome: React.FC<any> = ()=>{
             padding: '8px',
             borderStyle: 'hidden',
             fontSize: '16px',
-            paddingRight: '30px',
+            //paddingRight: '30px',
             width: '100%',
             '&:focus':{
                 outlineOffset: '0px',
