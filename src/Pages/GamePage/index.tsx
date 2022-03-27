@@ -257,25 +257,27 @@ const GamePage: React.FC<any> = ()=>{
             </div>
 
             {/** Performance metric */}
-            <div className={styles.scoreCard}>
+            <div className={`${styles.scoreCard} ${styles.liveMetric}`}>
                 <h4>LIVE PERFORMANCE METRIC</h4>
                 <ReactSpeedometer
                     maxValue={2}
                     value={metricValue}
                     needleColor="red"
                     //segments={3}
-                    customSegmentStops={[0, 0.5, 1, 1.5, 2]}
+                    customSegmentStops={[0, 0.4, 0.8, 1.2, 1.6, 2]}
                     fluidWidth
                     height={200}
                     ringWidth={25}
                     valueTextFontSize={'0px'}
                     segmentColors={[
                         "#C40700",
+                        "#ff8c00",
                         "#f6ff00",
                         "#adf0ad",
                         "#4bc400",
                     ]}
                 />
+                <p className={styles.speedometerLabel}>Accurate Response Speed</p>
             </div>
         </div>
     )
