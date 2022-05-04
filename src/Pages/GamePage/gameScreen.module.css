@@ -157,7 +157,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* background-color: yellow;  */
     padding: 0 4% 0 0;
     margin-top: 1.5%;
 }
@@ -250,8 +249,13 @@
 
 .speedometerLabel{
     font-size: 14px;
-    top: -45px;
+    top: -35px;
     position: relative;
+}
+
+.metric{
+    position: relative;
+    top: -300px
 }
 
 .trophy{
@@ -275,5 +279,54 @@
    .blackboard{
        border-right: 3px solid #FFFFFF;
    }
+}
+
+@media only screen and (max-width: 600px){
+    .timerLeaderboard{
+        width: 100%;
+        padding: 2%; 
+    }
+
+    .timer{
+        width: 60%;
+        padding-bottom: 20px;
+    }
+
+    .timer p{
+        font-size: 40px;
+    }
+
+    .mathDisplay{
+        font-size: 55px;
+    }
+
+    .gameDisplay{
+        padding: 4%;
+    }
+
+    .scoreCard{
+        width: 80%;
+    }
+
+    .liveMetric{
+        height: 280px;
+        width: 95%;
+    }
+
+    .infoArea{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .speedometerLabel{
+        top: -75px;
+    }
+
+    .metric{
+        position: absolute;
+        top: 130px;
+        font-size: 40px;
+    }
 }
 

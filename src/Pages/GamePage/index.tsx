@@ -14,6 +14,8 @@ import CheckCircleOutlineSharpIcon from '@mui/icons-material/CheckCircleOutlineS
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import { QuestionField } from '../../types/response';
 import { isEmpty } from '../../utils/formUtils';
+import Grid from '@mui/material/Grid';
+import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 const GamePage: React.FC<any> = ()=>{
     
@@ -33,6 +35,7 @@ const GamePage: React.FC<any> = ()=>{
     const rightControls = useAnimation();
     const countControls = useAnimation();
     const controls = useAnimation();
+    const { width } = useWindowDimensions();
 
     // State
     const [background, setBackground] = React.useState<string>("#00EB96");
@@ -266,8 +269,8 @@ const GamePage: React.FC<any> = ()=>{
                     //segments={3}
                     customSegmentStops={[0, 0.4, 0.8, 1.2, 1.6, 2]}
                     fluidWidth
-                    height={200}
-                    ringWidth={25}
+                    height={100}
+                    ringWidth={15}
                     valueTextFontSize={'0px'}
                     segmentColors={[
                         "#C40700",
@@ -278,6 +281,7 @@ const GamePage: React.FC<any> = ()=>{
                     ]}
                 />
                 <p className={styles.speedometerLabel}>Accurate Response Speed</p>
+                <p className={styles.metric} >{metricValue.toFixed(2)}</p>
             </div>
         </div>
     )
@@ -333,27 +337,30 @@ const GamePage: React.FC<any> = ()=>{
             </div> */}
 
             {/** Answer Indicator  */}
-            <div className={styles.answerIndicator}>
-                <motion.div initial={{ opacity: 0 }} animate={rightControls}>
-                    {
-                        correct ?  
-                        <CheckCircleOutlineSharpIcon
-                            sx={{
-                                color: '#00EB96',
-                                fontSize: '180px',
-                                textAlign: 'center'
-                            }}
-                        /> : 
-                        <CancelOutlinedIcon
-                            sx={{
-                                color: '#CE3427',
-                                fontSize: '180px',
-                                textAlign: 'center'
-                            }}
-                        />
-                    }
-                </motion.div>
-            </div>
+            {
+                width > 600 &&
+                <div className={styles.answerIndicator}>
+                    <motion.div initial={{ opacity: 0 }} animate={rightControls}>
+                        {
+                            correct ?  
+                            <CheckCircleOutlineSharpIcon
+                                sx={{
+                                    color: '#00EB96',
+                                    fontSize: '180px',
+                                    textAlign: 'center'
+                                }}
+                            /> : 
+                            <CancelOutlinedIcon
+                                sx={{
+                                    color: '#CE3427',
+                                    fontSize: '180px',
+                                    textAlign: 'center'
+                                }}
+                            />
+                        }
+                    </motion.div>
+                </div>
+            }
         </div>
     )
 
@@ -365,18 +372,46 @@ const GamePage: React.FC<any> = ()=>{
                 onNext={handleNext}
             />
 
-            <div className={`${styles.main}`}>
+            {/** For Larger window Sizes */}
+            {
+                width > 600 &&
+                <div className={`${styles.main}`}>
 
-                {/** Player Info */}
-                { playerInfo }
+                    {/** Player Info */}
+                    { playerInfo }
 
-                {/** Game Display */}
-                { gameDisplay }
+                    {/** Game Display */}
+                    { gameDisplay }
 
-                {/** Timer and Leaderboard */}
-                { timerAndCategory }
+                    {/** Timer and Leaderboard */}
+                    { timerAndCategory }
 
-            </div>
+                </div>
+            }
+
+            {/** For smaller window Sizes */}
+            {
+                width <= 600 &&
+                <Grid container>
+
+                    {/** Timer and Leaderboard */}
+                    <Grid item xs={12}>
+                        { timerAndCategory }
+                    </Grid>
+
+                    {/** Game Display */}
+                    <Grid item xs={12}>
+                        { gameDisplay }
+                    </Grid>
+
+                   {/** Player Info */}
+                    <Grid item xs={12}>
+                        { playerInfo }
+                    </Grid>
+
+                </Grid>
+            }
+
        </div>
        </>
     )

@@ -7,6 +7,7 @@ import { useHistory } from 'react-router';
 import defaultPic from '../../assets/avatar.png';
 import { roundUp } from '../../utils/mathUtils';
 import { ScoreResponse } from '../../types/response';
+import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 const PerformancePage: React.FC<any> = ()=>{
 
@@ -15,6 +16,7 @@ const PerformancePage: React.FC<any> = ()=>{
 
     // Hooks
     const history = useHistory();
+    const { width } = useWindowDimensions();
 
     // State
     const [scoreInfo, setScoreInfo] = React.useState<ScoreResponse>();
@@ -44,9 +46,12 @@ const PerformancePage: React.FC<any> = ()=>{
     // Elements
     const mtclogo = (
         <div className={styles.logo}>
-            <div className={styles.title}>
-                <h4>Performance Summary</h4>
-            </div>
+            {
+                width > 600 &&
+                <div className={styles.title}>
+                    <h4>Performance Summary</h4>
+                </div>
+            }
             <img src={logo} alt="MTC logo" />
         </div>
     );
@@ -91,6 +96,14 @@ const PerformancePage: React.FC<any> = ()=>{
 
     return(
         <Layout>
+            {/** Title */}
+            {
+                width <= 600 &&
+                <div className={styles.title}>
+                    <h4>Performance Summary</h4>
+                </div>
+            }
+            
             <div className={`${styles.main}`}>
                 {/** Logo */}
                 <div className={styles.logoArea}>
