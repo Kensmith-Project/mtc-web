@@ -144,3 +144,37 @@
         width: 100%;
     }
 }
+
+@media only screen and (max-width: 600px){
+    .title{
+        margin-bottom: 10%;
+    }
+
+    .title h4{
+        text-align: center;
+        padding-top: 4%;
+    }
+
+    .main{
+        flex-direction: column;
+    }
+
+    .logoArea{
+        padding: 0px;
+        justify-content: center;
+        display: flex;
+    }
+
+    .logo img{
+        width: 125px;
+        height: 125px;
+    }
+
+    .statDisplay{
+        padding: 0% 5%;
+    }
+
+    .btnDisplay{
+        padding-bottom: 5%;
+    }
+}

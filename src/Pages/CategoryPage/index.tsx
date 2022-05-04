@@ -20,6 +20,8 @@ import LoadingContext from '../../Contexts/LoadingContext';
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
 import { shuffleArray } from '../../utils/shuffleUtils';
+import Grid from '@mui/material/Grid';
+import { breakpoints } from '../../utils/breakpoints';
 
 const ElementaryHome: React.FC<any> = ()=>{
     
@@ -140,13 +142,16 @@ const ElementaryHome: React.FC<any> = ()=>{
                 outlineOffset: '0px',
                 outline: '2px solid #2660F6',
                 boxShadow: '0 0 3px #2660F6',
+            },
+            [breakpoints.sm()]:{
+                width: '80%'
             }
         }}
     />
 
 
     const mtclogo = (
-        <div className={styles.logo}>
+        <div className={`${styles.logo} ${styles.responsiveLogo}`}>
             <img src={logo} alt="MTC logo" />
         </div>
     );
@@ -165,75 +170,83 @@ const ElementaryHome: React.FC<any> = ()=>{
                     Back
                 </Button>
             </div>
-            <div className={`${styles.main}`}>
+            <Grid container sx={{ 
+                alignItems: 'center',
+                marginTop: '12%',
+                //justifyContent: 'space-evenly' 
+            }}>
                 {/** Logo */}
-                <div>
-                    {mtclogo}
-                </div>
+                <Grid item xs={12} md={4}>
+                    <div>
+                        {mtclogo}
+                    </div>
+                </Grid>
 
                 {/** Inputs */}
-                <div className={styles.inputGroup}>
+                <Grid item xs={12} md={8}>
+                    <div className={styles.inputGroup}>
 
-                    {/** Player Label */}
-                    <div className={styles.title}>
-                        <h3>Select a Category to continue</h3>
+                        {/** Player Label */}
+                        <div className={styles.title}>
+                            <h3>Select a Category to continue</h3>
+                        </div>
+
+                        {/** Category Dropdown */}
+                        <Select
+                            value={category}
+                            onChange={handleCategoryChange}
+                            displayEmpty
+                            IconComponent={SelectIcon}
+                            inputProps={{ 
+                                'aria-label': 'Without label',
+                            }}
+                            input={CategoryInput}
+                        >
+                                <MenuItem value="">
+                                    <em>Choose a Category</em>
+                                </MenuItem>
+                                {
+                                    categoryOptions.map((item, index)=>(
+                                        <MenuItem value={item.name} key={`drop${item.id}`} >{item.name}</MenuItem>
+                                    ))
+                                }
+                        </Select>
+
+                        {/** Continue Button */}
+                        {
+                            category !== '' &&
+                            <>
+                            <Button
+                                onClick={gotoCategory}
+                                variant='contained'
+                                sx={{
+                                    backgroundColor: '#2660F6',
+                                    width: '100%',
+                                    color: 'white',
+                                    padding: '10px 0px',
+                                    fontFamily: 'Rubik',
+                                    marginTop: 5,
+                                }}
+                            >
+                                Continue
+                            </Button>
+                            <Popover
+                                id={id}
+                                open={open}
+                                anchorEl={anchorEl}
+                                onClose={handlePopoverClose}
+                                anchorOrigin={{
+                                    vertical: 'bottom',
+                                    horizontal: 'left',
+                                }}
+                            >
+                                <Typography sx={{ p: 2 }}>This category doesn't have enough questions</Typography>
+                            </Popover>
+                            </>
+                        }
                     </div>
-                    
-                    {/** Category Dropdown */}
-                    <Select
-                        value={category}
-                        onChange={handleCategoryChange}
-                        displayEmpty
-                        IconComponent={SelectIcon}
-                        inputProps={{ 
-                            'aria-label': 'Without label',
-                        }}
-                        input={CategoryInput}
-                    >
-                            <MenuItem value="">
-                                <em>Choose a Category</em>
-                            </MenuItem>
-                            {
-                                categoryOptions.map((item, index)=>(
-                                    <MenuItem value={item.name} key={`drop${item.id}`} >{item.name}</MenuItem>
-                                ))
-                            }
-                    </Select>
-
-                    {/** Continue Button */}
-                    {
-                        category !== '' &&
-                        <>
-                        <Button
-                            onClick={gotoCategory}
-                            variant='contained'
-                            sx={{
-                                backgroundColor: '#2660F6',
-                                width: '100%',
-                                color: 'white',
-                                padding: '10px 0px',
-                                fontFamily: 'Rubik',
-                                marginTop: 5,
-                            }}
-                        >
-                            Continue
-                        </Button>
-                        <Popover
-                            id={id}
-                            open={open}
-                            anchorEl={anchorEl}
-                            onClose={handlePopoverClose}
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'left',
-                            }}
-                        >
-                            <Typography sx={{ p: 2 }}>This category doesn't have enough questions</Typography>
-                        </Popover>
-                        </>
-                    }
-                </div>
-            </div>
+                </Grid>
+            </Grid>
         </Layout>
     )
 }

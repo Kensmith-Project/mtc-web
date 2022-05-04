@@ -9,6 +9,7 @@ import Button from '@mui/material/Button';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Path } from '../../paths';
 import { useCategories, useQuestions } from '../../Services/question';
+import Grid from '@mui/material/Grid';
 
 const HomePage: React.FC<any> = ()=>{
 
@@ -60,72 +61,72 @@ const HomePage: React.FC<any> = ()=>{
             <div className={styles.title}>
                 <h4>Please Select a Level</h4>
             </div>
-            <div className={`${styles.main}`}>
-
-               {/** Elementary Card */}
-               <div className={styles.card} onClick={gotoElementary}>
-                <Card sx={{
-                    maxWidth: 289,
-                    minWidth: 250,
-                    '&:hover':{
-                        zIndex: 100,
-                        transform: "translate3d(0px, -3px, 0px)"
-                    },
-                    transition: 'all 0.3s',
-                    cursor: 'pointer',
-                    }}>
-                        <div className={styles.elementary}></div>
-                        <CardActions sx={{ padding: '15px 0', justifyContent: 'center'}}>
-                            <div className={styles.footer}>
-                                <h2>ELEMENTARY</h2>
-                            </div>
-                        </CardActions>
-                    </Card>
-               </div>
-
-                {/** Middle School Card */}
-                <div className={styles.card} onClick={gotoSecondary}>
-                    <Card sx={{
-                    maxWidth: 289,
-                    minWidth: 250,
-                    '&:hover':{
-                        zIndex: 100,
-                        transform: "translate3d(0px, -3px, 0px)"
-                    },
-                    transition: 'all 0.3s',
-                    cursor: 'pointer',
-                    }}>
-                        <div className={styles.middle}></div>
-                        <CardActions sx={{ padding: '15px 0', justifyContent: 'center'}}>
-                            <div className={styles.footer}>
-                                <h2>MIDDLE SCHOOL</h2>
-                            </div>
-                        </CardActions>
-                    </Card>
-                </div>
-
-                {/** Middle School Card */}
-                <div className={styles.card} onClick={gotoHighSchool}>
-                    <Card sx={{
-                    maxWidth: 289,
-                    minWidth: 250,
-                    '&:hover':{
-                        zIndex: 100,
-                        transform: "translate3d(0px, -3px, 0px)"
-                    },
-                    transition: 'all 0.3s',
-                    cursor: 'pointer',
-                    }}>
-                        <div className={styles.high}><h1>H</h1></div>
-                        <CardActions sx={{ padding: '15px 0', justifyContent: 'center'}}>
-                            <div className={styles.footer}>
-                                <h2>HIGH SCHOOL</h2>
-                            </div>
-                        </CardActions>
-                    </Card>
-                </div>
-
-            </div>
+            <Grid container justifyContent={'space-evenly'} spacing={3} pb={3}>
+                <Grid item>
+                    <div className={styles.card} onClick={gotoElementary}>
+                        <Card sx={{
+                            maxWidth: 289,
+                            minWidth: 250,
+                            '&:hover':{
+                                zIndex: 100,
+                                transform: "translate3d(0px, -3px, 0px)"
+                            },
+                            transition: 'all 0.3s',
+                            cursor: 'pointer',
+                        }}>
+                                <div className={styles.elementary}></div>
+                            <CardActions sx={{ padding: '15px 0', justifyContent: 'center'}}>
+                                <div className={styles.footer}>
+                                    <h2>ELEMENTARY</h2>
+                                </div>
+                            </CardActions>
+                        </Card>
+                    </div>
+                </Grid>
+                <Grid item>
+                    <div className={styles.card} onClick={gotoSecondary}>
+                        <Card sx={{
+                        maxWidth: 289,
+                        minWidth: 250,
+                        '&:hover':{
+                            zIndex: 100,
+                            transform: "translate3d(0px, -3px, 0px)"
+                        },
+                        transition: 'all 0.3s',
+                        cursor: 'pointer',
+                        }}>
+                            <div className={styles.middle}></div>
+                            <CardActions sx={{ padding: '15px 0', justifyContent: 'center'}}>
+                                <div className={styles.footer}>
+                                    <h2>MIDDLE SCHOOL</h2>
+                                </div>
+                            </CardActions>
+                        </Card>
+                    </div>
+                </Grid>
+                <Grid item>
+                    <div className={styles.card} onClick={gotoHighSchool}>
+                        <Card sx={{
+                        maxWidth: 289,
+                        minWidth: 250,
+                        '&:hover':{
+                            zIndex: 100,
+                            transform: "translate3d(0px, -3px, 0px)"
+                        },
+                        transition: 'all 0.3s',
+                        cursor: 'pointer',
+                        }}>
+                            <div className={styles.high}><h1>H</h1></div>
+                            <CardActions sx={{ padding: '15px 0', justifyContent: 'center'}}>
+                                <div className={styles.footer}>
+                                    <h2>HIGH SCHOOL</h2>
+                                </div>
+                            </CardActions>
+                        </Card>
+                    </div>
+                </Grid>
+            </Grid>
+           
         </Layout>
     )
 }
