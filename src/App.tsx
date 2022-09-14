@@ -18,6 +18,8 @@ import GameRoute from './routes/GameRoute';
 import MiddleRoute from './routes/MiddleRoute';
 import HighRoute from './routes/HighRoute';
 import CategoryDescriptionPage from './Pages/CategoryDescriptionPage';
+import SettingsRoute from './routes/SettingsRoute';
+import HomePageAdmin from './Pages/HomePageAdmin';
 
 function App(){
 
@@ -67,6 +69,10 @@ function App(){
           <Route path="/category" component={CategoryDescriptionPage}/>
           <Route path="/ready" component={CountdownPage}/>
           <Route path="/game" component={GameRoute}/>
+
+          {/** Admin Routes */}
+          <Route path="/admin/settings" component={SettingsRoute}/>
+          <Route path="/admin" component={HomePageAdmin}/>
         </Switch>
       </Router>
       </ToastContext.Provider>
