@@ -62,7 +62,7 @@ function App(){
         <Switch>
           <Route path="/" exact component={HomePage}/>
           <Route path="/elementary" component={ElementaryRoute}/>
-          <Route path="/middle" component={MiddleRoute}/>
+          <Route path="/secondary" component={MiddleRoute}/>
           <Route path="/high" component={HighRoute}/>
           <Route path="/category" component={CategoryDescriptionPage}/>
           <Route path="/ready" component={CountdownPage}/>

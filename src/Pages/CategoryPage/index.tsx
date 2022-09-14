@@ -22,6 +22,9 @@ import Typography from '@mui/material/Typography';
 import { shuffleArray } from '../../utils/shuffleUtils';
 import Grid from '@mui/material/Grid';
 import { breakpoints } from '../../utils/breakpoints';
+import { Question } from '../../types/Question';
+import { Challenge } from '../../types/Challenge';
+import { SchoolLevel } from '../../types/SchoolLevel';
 
 const ElementaryHome: React.FC<any> = ()=>{
     
@@ -43,14 +46,15 @@ const ElementaryHome: React.FC<any> = ()=>{
     // Hooks
     const history = useHistory();
     const location = useLocation();
-    const { data, isError } = useQuestions();
-    const categoriesFetch = useCategories();
+    let level = location.pathname.replace('/', '');
+    const { data, isError } = useQuestions(level as SchoolLevel);
+    const categoriesFetch = useCategories(level as SchoolLevel);
 
     // State
     const [category, setCategory] = React.useState<string>('');
-    const [categoryOptions, setCategoryOptions] = React.useState<CategoryResponse[]>([]);
-    const [filteredQuestions, setFilteredQuestions] = React.useState<QuestionsResponse[]>([]);
-    const [questionFields, setQuestionFields] = React.useState<QuestionField[]>([]);
+    const [categoryOptions, setCategoryOptions] = React.useState<Challenge[]>([]);
+    const [filteredQuestions, setFilteredQuestions] = React.useState<Question[]>([]);
+    const [questionFields, setQuestionFields] = React.useState<Question[]>([]);
     const [open, setOpen] = React.useState<boolean>(false);
     const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 
@@ -67,16 +71,16 @@ const ElementaryHome: React.FC<any> = ()=>{
         setCategory(value);
 
         // Filter the questions by category
-        let cat = categoriesFetch.data?.find((c)=> c.name === value);
+        // let cat = categoriesFetch.data?.find((c)=> c.name === value);
 
-        if (cat) {
-            let tempCat = cat;  // Just did this to remove the undefined nature of cat
-            let questions = filteredQuestions?.filter((q)=> q.categories.includes(tempCat.id));
-            let questionFields = questions.map((q)=> q.acf);
-            console.log('Question Fields');
-            console.log(questionFields); 
-            setQuestionFields(questionFields);
-        }
+        // if (cat) {
+        //     let questions = data?.filter((q)=> q.category.name === value);
+        //     //let questions = filteredQuestions?.filter((q)=> q.category.includes(tempCat.id));
+        //     setQuestionFields(questions);
+        // }
+
+        let questions = filteredQuestions?.filter((q)=> q.category.name === value);
+        setQuestionFields(questions || []);
     }
 
     // Links and handlers
@@ -108,18 +112,19 @@ const ElementaryHome: React.FC<any> = ()=>{
             console.log(data);
 
             // Filter questions by level
-            let filteredQdata = data.filter((q)=> q.acf.level === level);
-            setFilteredQuestions(filteredQdata);
+            let filteredQdata = data.filter((q)=> q.level === level);
+            setFilteredQuestions(data);
 
-            // Filter the relavant categories
-            let relevantCategories = ['category1', 'category2', 'category3', 'catgeory4'];
-            let filteredCategories = categoriesFetch.data.filter((c)=>{
-                let processedCat = c.name.replace(/\s/g, '').toLowerCase()
-                if (relevantCategories.includes(processedCat)) {
-                    return c;
-                }
-            });
-            setCategoryOptions(filteredCategories);
+            // // Filter the relavant categories
+            // let relevantCategories = ['category1', 'category2', 'category3', 'catgeory4'];
+            // let filteredCategories = categoriesFetch.data.filter((c)=>{
+            //     let processedCat = c.name.replace(/\s/g, '').toLowerCase()
+            //     if (relevantCategories.includes(processedCat)) {
+            //         return c;
+            //     }
+            // });
+            //let filteredCategories = categoriesFetch.data.filter((c)=> c.level === level)
+            setCategoryOptions(categoriesFetch.data);
             setLoading(false);
         }
         if (isError || categoriesFetch.isError) {
@@ -188,7 +193,7 @@ const ElementaryHome: React.FC<any> = ()=>{
 
                         {/** Player Label */}
                         <div className={styles.title}>
-                            <h3>Select a Category to continue</h3>
+                            <h3>Select a Challenge to continue</h3>
                         </div>
 
                         {/** Category Dropdown */}
