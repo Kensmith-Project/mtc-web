@@ -20,6 +20,9 @@ import HighRoute from './routes/HighRoute';
 import CategoryDescriptionPage from './Pages/CategoryDescriptionPage';
 import SettingsRoute from './routes/SettingsRoute';
 import HomePageAdmin from './Pages/HomePageAdmin';
+import LoginPageAdmin from './Pages/LoginPageAdmin';
+import ProtectedRoute from './Components/ProtectedRoute';
+import ProtectedAuthRoute from './Components/ProtectedAuthRoute';
 
 function App(){
 
@@ -71,8 +74,9 @@ function App(){
           <Route path="/game" component={GameRoute}/>
 
           {/** Admin Routes */}
-          <Route path="/admin/settings" component={SettingsRoute}/>
-          <Route path="/admin" component={HomePageAdmin}/>
+          <ProtectedRoute path="/admin/settings" component={SettingsRoute}/>
+          <ProtectedRoute path="/admin" exact component={HomePageAdmin}/>
+          <ProtectedAuthRoute path="/admin/login" exact component={LoginPageAdmin}/>
         </Switch>
       </Router>
       </ToastContext.Provider>

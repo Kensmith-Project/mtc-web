@@ -6,7 +6,7 @@ import { CategoryResponse, QuestionsResponse } from '../types/response';
 import { SchoolLevel } from '../types/SchoolLevel';
 
 //const baseUrl = 'https://mtcgameshow.com/wp-json/wp/v2';
-const baseUrl = 'http://localhost:3007';
+const baseUrl = process.env.BASE_URL || 'http://localhost:3007';
 
 export const useQuestions = (level?: SchoolLevel) =>{
     const fetcher = (url: string) => 
