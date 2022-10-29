@@ -7,22 +7,19 @@ import Radio from '@mui/material/Radio';
 import { withStyles } from '@mui/styles';
 import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
 import React from 'react';
-import { useHistory, useRouteMatch } from 'react-router';
+import { useHistory} from 'react-router';
 import styles from './questionSettings.module.css';
-import { useDispatch, useSelector } from 'react-redux';
 import { Challenge } from '../../types/Challenge';
 import { Question } from '../../types/Question';
-import { send } from 'process';
 import BaseTable, { EditButton } from '../../Components/BaseTable';
 import Layout from '../../Components/Layout';
-import LoadingScreen from '../../Components/LoadingScreen';
-import MyStatusBar from '../../Components/MyStatusBar';
 import { SchoolLevel } from '../../types/SchoolLevel';
-import { useCategories, useQuestions } from '../../Services/question';
+import { deleteQuestions, useCategories, useQuestions } from '../../Services/question';
 import mapQuestionToRows from '../../utils/mapQuestionToRows';
 import LoadingContext from '../../Contexts/LoadingContext';
 import ToastContext from '../../Contexts/ToastContext';
 import QuestionEditDialog from '../../Components/Dialogs/QuestionEditDialog';
+import { parseError } from '../../utils/errorUtils';
 
 
 
@@ -35,7 +32,7 @@ const QuestionSettings: React.FC<any> = ()=>{
 
     // Context
     const { setLoading } = React.useContext(LoadingContext);
-    const { openError } = React.useContext(ToastContext);
+    const { openError, openSuccess } = React.useContext(ToastContext);
    
 
     // State
@@ -55,20 +52,25 @@ const QuestionSettings: React.FC<any> = ()=>{
         let newRows = resetRows?.filter((row)=> row.question.toLowerCase().includes(value));
         setRows(newRows || []);
     }
-    const handleDelete = (selectedRows: any[])=>{
-        // setLoading(true);
-        // // let newRows = rows.filter((row)=> !(selectedRows.includes(row.id)));
-        // // let newFilteredRows = resetRows?.filter((row)=> !(selectedRows.includes(row.id)));
-        // // setRows(newRows);
-        // // setResetRows(newFilteredRows);
-        // dispatch(resetStatus());
-        // dispatch(send('question-delete', selectedRows));
+    const handleDelete = async (selectedRows: any[])=>{
+        if (window.confirm('Are you sure you want to delete these questions ?')){
+            setLoading(true);
+
+            const { data, error } = await deleteQuestions(selectedRows);
+
+            if (data && data.success) {
+                setLoading(false);
+                openSuccess(data.message || 'Successfully deleted question(s)');
+            }
+
+            if (error) {
+                setLoading(false);
+                openError(parseError(error));
+            }
+        }
     }
     const gotoAddQuestion = ()=>{
-        history.push({
-            pathname: "/settings/questions/add",
-            state:{ level: level }
-        });
+        history.push(`/admin/settings/questions/add?level=${level}`);
     }
     const handleClose = ()=>{
         history.goBack()
@@ -125,11 +127,7 @@ const QuestionSettings: React.FC<any> = ()=>{
             setCategoryOptions(newCategories);
         }
 
-    }, [data, level, categoriesFetch.data, isLoading, categoriesFetch.isLoading, isError, categoriesFetch.isError])
-
-    // Status messages
-    //let successMessage = `${deleteCount} question(s) successfully deleted`;
-    let errorMessage = 'An error occurred while deleting question(s)';
+    }, [data, level, categoriesFetch.data, isLoading, categoriesFetch.isLoading, isError, categoriesFetch.isError]);
 
     //  Edit cell render function
     const renderEditCell = (params: GridRenderCellParams<any, any, any>)=>{

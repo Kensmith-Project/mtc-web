@@ -31,7 +31,7 @@ const HomePageAdmin: React.FC<any> = ()=>{
             onClick: gotoCategories,
         },
         {
-            label: "Add Questions",
+            label: "Question Settings",
             onClick: gotoQuestions,
         },
     ]

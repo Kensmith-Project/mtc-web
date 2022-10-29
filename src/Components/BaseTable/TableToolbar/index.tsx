@@ -16,13 +16,7 @@ export default function TableToolbar(props: TableToolbarProps){
 
     // Handlers
     const handleDelete = async (event: React.MouseEvent)=>{
-      //let result = await deleteBox(deleteMessage);
-      // let result = await ipcRenderer.invoke('delete-item');
-      // console.log(result.response);
-      // if (result.response === 0) {
-      //   console.log('Deleting...')
-      //   deleteCallback && deleteCallback(event);
-      // }
+      deleteCallback && deleteCallback(event);
     }
   
     return (

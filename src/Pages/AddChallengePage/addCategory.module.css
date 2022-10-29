@@ -1,0 +1,68 @@
+.page{
+    padding: 10px 5px 30px;
+}
+
+.main{
+    padding: 0 5%;
+}
+
+.titleArea{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0px;
+}
+
+.titleArea h2{
+    color: white;
+}
+
+.name{
+    margin-bottom: 30px;
+}
+
+.name input{
+    outline: none ;
+    border-radius: 4px;
+    background-color: #E3EBFF;
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid black;
+}
+
+.name input:focus{
+    outline-offset: 0px;
+    outline: 0.5px solid #2660F6;
+    box-shadow: 0 0 3px #2660F6;
+}
+
+.name input::placeholder{
+    color: #8F8F8F;
+}
+
+.name label{
+    font-size: 18px;
+}
+
+.description textarea{
+    outline: none ;
+    border-radius: 4px;
+    background-color: #E3EBFF;
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+}
+
+.description textarea:focus{
+    outline-offset: 0px;
+    outline: 0.5px solid #2660F6;
+    box-shadow: 0 0 3px #2660F6;
+}
+
+.description textarea::placeholder{
+    color: #8F8F8F;
+}
+
+.description label{
+    font-size: 18px;
+}

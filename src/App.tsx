@@ -23,6 +23,7 @@ import HomePageAdmin from './Pages/HomePageAdmin';
 import LoginPageAdmin from './Pages/LoginPageAdmin';
 import ProtectedRoute from './Components/ProtectedRoute';
 import ProtectedAuthRoute from './Components/ProtectedAuthRoute';
+import NotFoundPage from './Pages/NotFoundPage';
 
 function App(){
 
@@ -77,6 +78,9 @@ function App(){
           <ProtectedRoute path="/admin/settings" component={SettingsRoute}/>
           <ProtectedRoute path="/admin" exact component={HomePageAdmin}/>
           <ProtectedAuthRoute path="/admin/login" exact component={LoginPageAdmin}/>
+
+          {/** Not Found */}
+          <Route path='*' exact={true} component={NotFoundPage} />
         </Switch>
       </Router>
       </ToastContext.Provider>

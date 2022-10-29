@@ -15,7 +15,7 @@ export interface Rule {
 export interface Challenge {
     id?: number;
     name: string;
-    description: string;
+    description?: string;
     level?: SchoolLevel;
     questions?: Question[];
     rule?: Rule;

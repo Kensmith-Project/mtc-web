@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, RouteComponentProps } from 'react-router';
+import NotFoundPage from '../Pages/NotFoundPage';
 import CategorySettingsRoute from './CategorySettingsRoute';
 import QuestionsSettingsRoute from './QuestionsSettingsRoute';
 

@@ -70,7 +70,7 @@ const MyNavbar: React.FC<any> = ()=>{
 
                 {/** Account settings */}
                 <div className={styles.menu}>
-                    <ProfileMenu user={user} onLogOut={handleLogout}/>
+                    { token && <ProfileMenu user={user} onLogOut={handleLogout}/> }
                 </div>
                 
             </div>

@@ -38,7 +38,7 @@ const CategoryDropdown: React.FC<CategoryDropdownProps> = ({
     };
     const gotoAddCategories = ()=>{
         history.push({
-           pathname: "/settings/categories/add",
+           pathname: "/admin/settings/categories/add",
            state:{ level: location.state.level }
         });
     }

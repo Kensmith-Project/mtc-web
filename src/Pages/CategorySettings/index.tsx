@@ -33,18 +33,13 @@ const CategorySettings: React.FC<any> = ()=>{
     const [resetRows, setResetRows] = React.useState<any[]>();
     const [categoryToEdit, setCategoryToEdit] = React.useState<Challenge>();
     const [open, setOpen] = React.useState<boolean>();
-    const [errOpen, setErrOpen] = React.useState<boolean>(false);
-    const [successOpen, setSuccessOpen] = React.useState<boolean>(false);
 
     // Links and Handlers
     const handleDialogClose = ()=>{
         setOpen(false);
     }
     const gotoAddCategories = ()=>{
-        history.push({
-           pathname: "/settings/categories/add",
-           state:{ level: level }
-        });
+        history.push(`/admin/settings/categories/add?level=${level}`);
     }
     const handleClose = ()=>{
         history.goBack()
@@ -76,12 +71,6 @@ const CategorySettings: React.FC<any> = ()=>{
         //setLoading(true);
         // dispatch(resetCategoryStatus());
         //dispatch(send('category-delete', selectedRows));
-    }
-    const handleErrClose = ()=>{
-        setErrOpen(false);
-    }
-    const handleSuccessClose = ()=>{
-        setSuccessOpen(false);
     }
     
 
