@@ -1,0 +1,24 @@
+.card{
+    justify-content: center;
+    min-width: 500px;
+    padding: 15px 70px 70px;
+    position: relative;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+}
+
+.close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px 10px 0 0;
+}
+
+.buttonArea{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}

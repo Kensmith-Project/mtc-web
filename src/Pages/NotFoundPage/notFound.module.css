@@ -1,0 +1,10 @@
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imageContainer{
+    width: 70%;
+    height: 60%;
+}

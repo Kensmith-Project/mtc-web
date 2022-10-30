@@ -1,0 +1,42 @@
+.searchBar{
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.inputArea{
+    width: 30%;
+    padding: 0;
+    position: relative;
+}
+.inputArea input{
+    background: #E5E9F9;
+    border-radius: 4px;
+    width: 100%;
+    padding: 15px;
+    border-style: hidden;
+    font-size: 16px;
+    padding-left: 30px;
+}
+.inputArea input:focus{
+    outline-offset: 0px;
+    border: 1px solid #2660F6;;;
+    box-shadow: 0 0 3px #2660F6;
+}
+
+.inputArea input::placeholder{
+    opacity: 0.6;
+    font-size: 14px;
+}
+
+.searchArea{
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttonGroup{
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 0px 15px;
+    margin-top: 40px;
+}

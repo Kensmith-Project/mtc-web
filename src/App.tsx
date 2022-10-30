@@ -18,6 +18,12 @@ import GameRoute from './routes/GameRoute';
 import MiddleRoute from './routes/MiddleRoute';
 import HighRoute from './routes/HighRoute';
 import CategoryDescriptionPage from './Pages/CategoryDescriptionPage';
+import SettingsRoute from './routes/SettingsRoute';
+import HomePageAdmin from './Pages/HomePageAdmin';
+import LoginPageAdmin from './Pages/LoginPageAdmin';
+import ProtectedRoute from './Components/ProtectedRoute';
+import ProtectedAuthRoute from './Components/ProtectedAuthRoute';
+import NotFoundPage from './Pages/NotFoundPage';
 
 function App(){
 
@@ -62,11 +68,19 @@ function App(){
         <Switch>
           <Route path="/" exact component={HomePage}/>
           <Route path="/elementary" component={ElementaryRoute}/>
-          <Route path="/middle" component={MiddleRoute}/>
+          <Route path="/secondary" component={MiddleRoute}/>
           <Route path="/high" component={HighRoute}/>
           <Route path="/category" component={CategoryDescriptionPage}/>
           <Route path="/ready" component={CountdownPage}/>
           <Route path="/game" component={GameRoute}/>
+
+          {/** Admin Routes */}
+          <ProtectedRoute path="/admin/settings" component={SettingsRoute}/>
+          <ProtectedRoute path="/admin" exact component={HomePageAdmin}/>
+          <ProtectedAuthRoute path="/admin/login" exact component={LoginPageAdmin}/>
+
+          {/** Not Found */}
+          <Route path='*' component={NotFoundPage} />
         </Switch>
       </Router>
       </ToastContext.Provider>

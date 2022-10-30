@@ -1,0 +1,119 @@
+.card{
+    background: #FFFFFF;
+    border-radius: 33px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    padding: 25px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 400px;
+    height: auto;
+}
+
+.logo img{
+    object-fit: contain;
+    width: 60px;
+    height: 60px;
+}
+
+.inputArea{
+    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0 30px;
+}
+.inputArea input{
+    background: #D6E3E8;
+    border-radius: 9px;
+    width: auto;
+    padding: 15px;
+    margin-top: 30px;
+    border-style: hidden;
+    font-size: 16px;
+    outline-offset: 0px;
+    outline: none;
+}
+
+.inputArea input:focus{
+    border: 2px solid #00037C;
+    box-shadow: 0 0 3px #00037C;
+}
+
+.inputArea input::placeholder{
+    color: #7B7B7B;
+    opacity: 0.3;
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+}
+
+.container{
+    background-color: #00037C;
+    min-height: 100vh;
+    /*background-image: url('../../assets/pexels-black-ice-1314536\ 1.png');
+    background-repeat: no-repeat;
+    background-size: contain;*/
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonArea button{
+    background: #00037C;
+    box-shadow: 0px 4px 4px rgba(0, 3, 124, 0.25);
+    border-radius: 9px;
+    padding: 12px 60px;
+    color: white;
+    margin-top: 30px;
+    margin-bottom:  30px;
+    cursor: pointer;
+}
+
+.trophyVector{
+    padding: 0;
+    margin: 0;
+}
+.trophyVector img{
+    position: absolute;
+    width: 15em;
+    height: 15em;
+    bottom: 0;
+    left: -18px;
+    padding: 0;
+}
+
+.forgotPassword{
+    margin-top: 2%;
+    cursor: pointer;
+}
+
+.forgotPassword p{
+    margin: 0px;
+    padding: 0px;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+}
+
+/* Responsive styling */
+
+@media only screen and (max-width: 575px) {
+    .trophyVector img{
+        width: 10em;
+        height: 10em;
+    }
+}
+
+
+
+/* Pumpkin Party regular */
+
+@font-face {
+    font-family: "Pumpkin Party";
+    src: url("../../fonts/Pumpkin-Party/Pumpkin\ Party.ttf") format('truetype'),
+         url("../../fonts/Pumpkin-Party/Pumpkin\ Party.otf") format('otf');
+    font-weight: 400;
+    font-style: normal;
+}

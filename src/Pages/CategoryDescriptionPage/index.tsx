@@ -39,7 +39,7 @@ const CategoryDescriptionPage: React.FC<any> = ()=>{
 
             {/**Title */}
             <div className={styles.title}>
-                <h2>Category Description</h2>
+                <h2>Challenge Description</h2>
             </div>
 
             <div className={styles.description}>

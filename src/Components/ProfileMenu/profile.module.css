@@ -1,0 +1,15 @@
+.profile{
+    display: flex;
+    align-items: center;
+}
+
+.profile p{
+    color: #0A0000;
+    font-size: 13px;
+}
+
+@media only screen and (max-width: 720px) {
+    .profile p{
+        font-size: 12px;
+    }
+}

@@ -14,8 +14,8 @@ import Grid from '@mui/material/Grid';
 const HomePage: React.FC<any> = ()=>{
 
     // Data Fetch
-    const questionFetch = useQuestions();
-    const categoriesFetch = useCategories();
+    // const questionFetch = useQuestions();
+    // const categoriesFetch = useCategories();
 
     // Hooks
     const history = useHistory();
@@ -29,7 +29,7 @@ const HomePage: React.FC<any> = ()=>{
     }
     const gotoSecondary = ()=>{
         history.push({
-            pathname: "/middle",
+            pathname: "/secondary",
             state:{ level: 'middle' }
         })
     }

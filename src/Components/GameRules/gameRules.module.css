@@ -1,0 +1,42 @@
+.ruleMain{
+    display: inline-flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    font-family: 'Rubik';
+}
+
+.labelGroup{
+    display: inline-block;
+    font-size: 24px;
+    color: white;
+    margin-left: 1%;
+}
+
+.labelGroup input{
+    border-style: none;
+    width: 3.5ch;
+    font-size: 24px;
+    color: white;
+    border-bottom: 1px solid white;
+    background-color: transparent;
+    text-align: center;
+}
+
+.labelGroup input:focus{
+    outline-offset: 0px;
+    outline: none;
+}
+
+
+/* Responsive styling */
+
+@media only screen and (max-width: 1124px) {
+    .labelGroup{
+        font-size: 22px;
+    }
+
+    .labelGroup input{
+        font-size: 22px;
+    }
+}
