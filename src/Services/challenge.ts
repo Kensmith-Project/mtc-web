@@ -22,3 +22,39 @@ export function addChallenge(challenge: Challenge) {
 
     return willAddChallenge;
 }
+
+export function deleteChallenges(ids: number[]) {
+    const apiUrl = `${baseUrl}/api/v1/challenge/delete`;
+
+    let payload = { ids };
+
+    const willDeleteChallenges: Promise<GeneralResponse<UploadQuestionResponse>> = new Promise((resolve)=>{
+        axios.post(apiUrl, payload).then((response: AxiosResponse<UploadQuestionResponse>)=>{
+            console.log(response.data);
+            resolve({ data: response.data })
+            
+        }).catch((err: AxiosError<UploadQuestionResponse>)=>{
+            console.log(JSON.stringify(err));
+            resolve({ error: err })
+        })
+    })
+
+    return willDeleteChallenges;
+}
+
+export function updateChallenge(request: Challenge) {
+    const apiUrl = `${baseUrl}/api/v1/challenge`;
+
+    const willUpdateChallenge: Promise<GeneralResponse<UploadQuestionResponse>> = new Promise((resolve)=>{
+        axios.put(apiUrl, request).then((response: AxiosResponse<UploadQuestionResponse>)=>{
+            console.log(response.data);
+            resolve({ data: response.data })
+            
+        }).catch((err: AxiosError<UploadQuestionResponse>)=>{
+            console.log(JSON.stringify(err));
+            resolve({ error: err })
+        })
+    })
+
+    return willUpdateChallenge;
+}

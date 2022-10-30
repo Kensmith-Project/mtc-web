@@ -1,6 +1,7 @@
 import { Avatar, Button, FormControl, FormControlLabel, FormLabel, RadioGroup, Radio } from '@mui/material';
 import { withStyles } from '@mui/styles';
 import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid';
+import { AxiosError } from 'axios';
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useRouteMatch } from 'react-router';
@@ -9,9 +10,11 @@ import CategoryEditDialog from '../../Components/Dialogs/CategoryEditDialog';
 import Layout from '../../Components/Layout';
 import LoadingContext from '../../Contexts/LoadingContext';
 import ToastContext from '../../Contexts/ToastContext';
+import { deleteChallenges } from '../../Services/challenge';
 import { useCategories } from '../../Services/question';
 import { Challenge } from '../../types/Challenge';
 import { SchoolLevel } from '../../types/SchoolLevel';
+import { parseError } from '../../utils/errorUtils';
 import { mapCategoriesToRows } from '../../utils/uploadUtils';
 import styles from './categorySettings.module.css';
 
@@ -21,11 +24,11 @@ const CategorySettings: React.FC<any> = ()=>{
     // Hooks
     const history = useHistory();
     const match = useRouteMatch();
-    const { data, isLoading, isError } = useCategories()
+    const { data, isLoading, isError, mutate } = useCategories()
 
     // Context
     const { setLoading } = React.useContext(LoadingContext);
-    const { openError } = React.useContext(ToastContext);
+    const { openError, openSuccess } = React.useContext(ToastContext);
 
     // State
     const [level, setLevel] = React.useState<SchoolLevel>();
@@ -67,10 +70,24 @@ const CategorySettings: React.FC<any> = ()=>{
         setRows(newRows || []);
     }
 
-    const handleDelete = (selectedRows: any[])=>{
-        //setLoading(true);
-        // dispatch(resetCategoryStatus());
-        //dispatch(send('category-delete', selectedRows));
+    const handleDelete = async (selectedRows: any[])=>{
+        if (window.confirm('Are you sure you want to delete these challenges ?')){
+            setLoading(true);
+
+            const { data, error } = await deleteChallenges(selectedRows);
+
+            if (data && data.success) {
+                setLoading(false);
+                mutate();
+                openSuccess(data.message || 'Successfully deleted question(s)');
+            }
+
+            if (error) {
+                setLoading(false);
+                mutate();
+                openError(parseError(error));
+            }
+        }
     }
     
 
@@ -112,8 +129,9 @@ const CategorySettings: React.FC<any> = ()=>{
             let mappedRows = mapCategoriesToRows(newRows);
             console.log(mappedRows);
             setRows(mappedRows);
+            setResetRows(mappedRows);
         }
-    }, [level, isLoading, isError])
+    }, [level, isLoading, isError, data])
 
     // Status messages
     let errorMessage = 'An error occurred while deleting categories';
