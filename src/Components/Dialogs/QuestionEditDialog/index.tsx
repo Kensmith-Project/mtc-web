@@ -17,6 +17,10 @@ import MyStatusBar from '../../MyStatusBar';
 import { mathjaxToText } from '../../../utils/mathjaxUtils';
 import { useDispatch, useSelector } from 'react-redux';
 import { Challenge } from '../../../types/Challenge';
+import LoadingContext from '../../../Contexts/LoadingContext';
+import { updateQuestion, useQuestions } from '../../../Services/question';
+import ToastContext from '../../../Contexts/ToastContext';
+import { parseError } from '../../../utils/errorUtils';
 
 export interface QuestionEditDialogProps{
     open?: boolean;
@@ -30,11 +34,16 @@ const QuestionEditDialog: React.FC<QuestionEditDialogProps> = ({
     open = false, onClose, question, categories,
 })=>{
 
+    const { mutate } = useQuestions();
+
+    // Context
+    const { setLoading } = React.useContext(LoadingContext);
+    const { openSuccess, openError } = React.useContext(ToastContext);
+
     // State
     const [editedQuestion, setQuestion] = React.useState<string>();
     const [editedAnswer, setAnswer] = React.useState<string>();
     const [category, setCategory] = React.useState<string>();
-    const [loading, setLoading] = React.useState<boolean>(false);
     const [errOpen, setErrOpen] = React.useState<boolean>(false);
     const [successOpen, setSuccessOpen] = React.useState<boolean>(false);
 
@@ -63,26 +72,39 @@ const QuestionEditDialog: React.FC<QuestionEditDialogProps> = ({
     const handleSuccessClose = ()=>{
         setSuccessOpen(false);
     }
-    const handleSave = ()=>{
-        // setLoading(true);
-        // // Check if there were any changes to the inputs
-        // let cat = question?.category;
-        // if (category) {
-        //     cat = categories?.find((item)=> item.name === category) || { name: category, level: question?.level };
-        // }
-        // let q = question?.question || '';
-        // if (editedQuestion) {
-        //     q = format === QuestionType.REGULAR ? 
-        //     mathjaxToText(editedQuestion) : q
-        // }
-        // let request: Question = {
-        //     id: question?.id,
-        //     question: q,
-        //     answer : editedAnswer || question?.answer || '',
-        //     level: question?.level,
-        //     category: cat,
-        // }
-        // console.log(request);
+    const handleSave = async ()=>{
+        setLoading(true);
+        // Check if there were any changes to the inputs
+        let cat = question?.category;
+        if (category) {
+            cat = categories?.find((item)=> item.name === category) || { name: category, level: question?.level };
+        }
+        let q = question?.question || '';
+        if (editedQuestion) {
+            // q = format === QuestionType.REGULAR ? 
+            // mathjaxToText(editedQuestion) : q
+            q = mathjaxToText(editedQuestion)
+        }
+        let request: Question = {
+            id: question?.id,
+            question: q,
+            answer: editedAnswer || question?.answer || '',
+            level: question?.level,
+            category: cat,
+        }
+        
+        const { data, error } = await updateQuestion(request);
+
+        if (data){
+            setLoading(false);
+            mutate();
+            openSuccess(data?.message || 'Successfully updated question');
+        }
+
+        if (error){
+            setLoading(false);
+            openError(parseError(error));
+        }
 
     }
 

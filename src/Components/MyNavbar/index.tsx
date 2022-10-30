@@ -39,7 +39,7 @@ const MyNavbar: React.FC<any> = ()=>{
 
     // Effect
     React.useEffect(()=>{
-        if (isLoading) {
+        if (isLoading && token) {
             setLoading(true);
         }
 
@@ -47,11 +47,15 @@ const MyNavbar: React.FC<any> = ()=>{
             setLoading(false);
         }
 
+        if (!token){
+            setLoading(false);
+        }
+
         // if (isError){
         //     setLoading(false);
         //     openError("Could not fetch user's profile");
         // }
-    },[isLoading])
+    },[isLoading, token])
 
     return(
         <div className={styles.nav}>

@@ -80,7 +80,7 @@ function App(){
           <ProtectedAuthRoute path="/admin/login" exact component={LoginPageAdmin}/>
 
           {/** Not Found */}
-          <Route path='*' exact={true} component={NotFoundPage} />
+          <Route path='*' component={NotFoundPage} />
         </Switch>
       </Router>
       </ToastContext.Provider>

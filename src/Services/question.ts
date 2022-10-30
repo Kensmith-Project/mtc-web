@@ -94,3 +94,20 @@ export function deleteQuestions(ids: number[]) {
 
     return willDeleteQuestions;
 }
+
+export function updateQuestion(request: Question) {
+    const apiUrl = `${baseUrl}/api/v1/question`;
+
+    const willUpdateQuestion: Promise<GeneralResponse<UploadQuestionResponse>> = new Promise((resolve)=>{
+        axios.put(apiUrl, request).then((response: AxiosResponse<UploadQuestionResponse>)=>{
+            console.log(response.data);
+            resolve({ data: response.data })
+            
+        }).catch((err: AxiosError<UploadQuestionResponse>)=>{
+            console.log(JSON.stringify(err));
+            resolve({ error: err })
+        })
+    })
+
+    return willUpdateQuestion;
+}

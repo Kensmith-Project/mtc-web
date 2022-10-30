@@ -5,8 +5,8 @@ export interface Question {
     id?: number;
     question: string;
     answer : string;
-    level: SchoolLevel;
-    category: Challenge;
-    createdAt: string;
-    updatedAt: string;
+    level?: SchoolLevel;
+    category?: Challenge;
+    createdAt?: string;
+    updatedAt?: string;
 }

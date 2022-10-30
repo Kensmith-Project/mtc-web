@@ -79,7 +79,11 @@ const ElementaryHome: React.FC<any> = ()=>{
         //     setQuestionFields(questions);
         // }
 
-        let questions = filteredQuestions?.filter((q)=> q.category.name === value);
+        let questions = filteredQuestions?.filter((q)=>{
+            if (q.category && q.category.name === value){
+                return q;
+            }
+        });
         setQuestionFields(questions || []);
     }
 

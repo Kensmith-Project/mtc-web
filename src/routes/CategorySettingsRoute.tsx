@@ -12,7 +12,6 @@ const CategorySettingsRoute: React.FC<RouteComponentProps> = ({ match }) =>{
         {/* here's a nested Route, match.url helps us make a relative path */}
         <Route path={match.url} exact component={CategorySettings} />
         <Route path={match.url + '/add'} exact component={AddChallengePage} />
-        <Route path='*' exact={true} component={NotFoundPage} />
         {/* <Route path={match.url + "/add"} component={AddCategory} /> */}
     </div>
     )
