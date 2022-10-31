@@ -3,7 +3,7 @@ import { Challenge } from "../types/Challenge";
 import { GeneralResponse } from "../types/responses/GeneralResponse";
 import { UploadQuestionResponse } from "../types/responses/UploadQuestionResponse";
 
-const baseUrl = process.env.BASE_URL || 'http://localhost:3007';
+const baseUrl = process.env.REACT_APP_BASE_URL || 'http://localhost:3007';
 
 export function addChallenge(challenge: Challenge) {
     const apiUrl = `${baseUrl}/api/v1/challenge`;
